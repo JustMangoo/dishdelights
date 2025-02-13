@@ -1,14 +1,21 @@
 import styles from "./RecipeDetail.module.css";
+import closeIcon from "../assets/icons/close_24dp_F8F8F8_FILL0_wght400_GRAD0_opsz24.svg";
 
 const RecipeDetail = ({ recipe, onClose }) => {
   return (
     <div className={styles.recipeDetail}>
       <div className={styles.recipeHeader}>
         <h2>{recipe.title}</h2>
-        <button onClick={onClose}>+</button>
+        <button className="icon-button" onClick={onClose}>
+          <img src={closeIcon} alt="close recipe details button" />
+        </button>
       </div>
 
-      <img src={recipe.image} alt={recipe.title} />
+      <img
+        className={styles.detailImage}
+        src={recipe.image}
+        alt={recipe.title}
+      />
       <h3>Ingredients:</h3>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (

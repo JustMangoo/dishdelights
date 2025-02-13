@@ -26,3 +26,37 @@ h1 {
   margin-bottom: 10px;
   font-weight: 600;
 }
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.icon-button {
+  background-color: var(--primary-color);
+  border: none;
+  height: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.icon-button img {
+  height: auto;
+  width: 100%;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+}

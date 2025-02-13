@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import editIcon from "../assets/icons/edit_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg";
+import addIcon from "../assets/icons/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg";
+import deleteIcon from "../assets/icons/delete_24dp_F8F8F8_FILL0_wght400_GRAD0_opsz24.svg";
+import styles from "./PersonalFavorites.module.css";
 
 const PersonalFavorites = () => {
   const [recipes, setRecipes] = useState([]);
@@ -15,7 +19,12 @@ const PersonalFavorites = () => {
     console.log("Loading recipes from localStorage");
     const storedRecipes =
       JSON.parse(localStorage.getItem("favoriteRecipes")) || [];
-    setRecipes(storedRecipes);
+    console.log("Loaded recipes:", storedRecipes);
+
+    // Only set recipes if the state is empty (to avoid overwriting during double mount)
+    if (recipes.length === 0) {
+      setRecipes(storedRecipes);
+    }
   }, []);
 
   // Save recipes to localStorage whenever the recipes state changes
@@ -83,46 +92,70 @@ const PersonalFavorites = () => {
 
       {/* Recipe Form */}
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Recipe Title"
-          value={formData.title}
-          onChange={handleInputChange}
-          required
-        />
-        <textarea
-          name="ingredients"
-          placeholder="Ingredients (comma-separated)"
-          value={formData.ingredients}
-          onChange={handleInputChange}
-          required
-        />
-        <textarea
-          name="instructions"
-          placeholder="Instructions (period-separated)"
-          value={formData.instructions}
-          onChange={handleInputChange}
-          required
-        />
-        <button type="submit">
-          {isEditing ? "Update Recipe" : "Add Recipe"}
-        </button>
+        <div className={styles.formHeader}>
+          <input
+            type="text"
+            name="title"
+            placeholder="Recipe Title"
+            value={formData.title}
+            onChange={handleInputChange}
+            required
+          />
+          <button className="icon-button" type="submit">
+            {isEditing ? <img src={editIcon}></img> : <img src={addIcon}></img>}
+          </button>
+        </div>
+        <div className={styles.formRow}>
+          <textarea
+            name="ingredients"
+            placeholder="Ingredients (comma-separated)"
+            value={formData.ingredients}
+            onChange={handleInputChange}
+            required
+            rows="10"
+          />
+          <textarea
+            name="instructions"
+            placeholder="Instructions (period-separated)"
+            value={formData.instructions}
+            onChange={handleInputChange}
+            required
+            rows="10"
+          />
+        </div>
       </form>
-
+      <div className={styles.rowDivider}></div>
       {/* Recipe List */}
       <div>
         {recipes.map((recipe) => (
-          <div key={recipe.id} className="recipe-card">
-            <h3>{recipe.title}</h3>
-            <p>
-              <strong>Ingredients:</strong> {recipe.ingredients.join(", ")}
-            </p>
-            <p>
-              <strong>Instructions:</strong> {recipe.instructions.join(". ")}
-            </p>
-            <button onClick={() => handleEdit(recipe)}>Edit</button>
-            <button onClick={() => handleDelete(recipe.id)}>Delete</button>
+          <div key={recipe.id}>
+            <div className={styles.recipeCard}>
+              <div className={styles.recipeInfo}>
+                <h3>{recipe.title}</h3>
+                <p>
+                  <strong>Ingredients:</strong> {recipe.ingredients.join(", ")}
+                </p>
+                <p>
+                  <strong>Instructions:</strong>{" "}
+                  {recipe.instructions.join(". ")}
+                </p>
+              </div>
+              <div className={styles.recipeActions}>
+                <button
+                  className="icon-button"
+                  onClick={() => handleEdit(recipe)}
+                >
+                  <img src={editIcon}></img>
+                </button>
+                <button
+                  className="icon-button"
+                  onClick={() => handleDelete(recipe.id)}
+                >
+                  <img src={deleteIcon}></img>
+                </button>
+              </div>
+            </div>
+            <div className={styles.rowDivider}></div>
           </div>
         ))}
       </div>
