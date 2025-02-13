@@ -196,9 +196,6 @@ const DishDelightsRecipes = () => {
         </select>
       </div>
 
-      {/* Recipe List */}
-      <RecipeList recipes={filteredRecipes} onRecipeClick={setSelectedRecipe} />
-
       {/* Recipe Detail */}
       {selectedRecipe && (
         <RecipeDetail
@@ -206,6 +203,9 @@ const DishDelightsRecipes = () => {
           onClose={() => setSelectedRecipe(null)}
         />
       )}
+
+      {/* Recipe List */}
+      <RecipeList recipes={filteredRecipes} onRecipeClick={setSelectedRecipe} />
     </div>
   );
 };

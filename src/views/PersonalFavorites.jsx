@@ -43,11 +43,28 @@ const PersonalFavorites = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Filter out empty ingredients and instructions
+    const filteredIngredients = formData.ingredients
+      .split(",")
+      .map((item) => item.trim())
+      .filter((item) => item !== ""); // Remove empty strings
+
+    const filteredInstructions = formData.instructions
+      .split(".")
+      .map((step) => step.trim())
+      .filter((step) => step !== ""); // Remove empty strings
+
+    // Prevent saving if all ingredients or instructions are empty
+    if (filteredIngredients.length === 0 || filteredInstructions.length === 0) {
+      alert("Please provide at least one ingredient and one instruction.");
+      return;
+    }
+
     const newRecipe = {
       id: isEditing ? formData.id : Date.now(),
-      title: formData.title,
-      ingredients: formData.ingredients.split(",").map((item) => item.trim()),
-      instructions: formData.instructions.split(".").map((step) => step.trim()),
+      title: formData.title.trim(), // Trim the title as well
+      ingredients: filteredIngredients,
+      instructions: filteredInstructions,
     };
 
     if (isEditing) {
@@ -113,6 +130,7 @@ const PersonalFavorites = () => {
             onChange={handleInputChange}
             required
             rows="10"
+            maxLength={500}
           />
           <textarea
             name="instructions"
@@ -121,6 +139,7 @@ const PersonalFavorites = () => {
             onChange={handleInputChange}
             required
             rows="10"
+            maxLength={500}
           />
         </div>
       </form>
@@ -133,11 +152,20 @@ const PersonalFavorites = () => {
               <div className={styles.recipeInfo}>
                 <h3>{recipe.title}</h3>
                 <p>
-                  <strong>Ingredients:</strong> {recipe.ingredients.join(", ")}
+                  <strong className={styles.listLabel}>Ingredients:</strong>
+                  <ul>
+                    {recipe.ingredients.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
                 </p>
                 <p>
-                  <strong>Instructions:</strong>{" "}
-                  {recipe.instructions.join(". ")}
+                  <strong className={styles.listLabel}>Instructions:</strong>
+                  <ol>
+                    {recipe.instructions.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ol>
                 </p>
               </div>
               <div className={styles.recipeActions}>

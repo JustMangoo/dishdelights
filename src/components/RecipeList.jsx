@@ -1,4 +1,5 @@
 import styles from "./RecipeList.module.css";
+import { useRef } from "react";
 
 const RecipeList = ({ recipes, onRecipeClick }) => {
   return (

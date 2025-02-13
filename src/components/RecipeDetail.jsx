@@ -1,5 +1,6 @@
 import styles from "./RecipeDetail.module.css";
 import closeIcon from "../assets/icons/close_24dp_F8F8F8_FILL0_wght400_GRAD0_opsz24.svg";
+import { useRef } from "react";
 
 const RecipeDetail = ({ recipe, onClose }) => {
   return (

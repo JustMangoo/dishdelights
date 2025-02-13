@@ -7,6 +7,7 @@ textarea {
   border: 4px solid var(--primary-color);
   box-sizing: border-box;
   border-radius: 32px;
+  resize: none;
 }
 
 .formHeader {
@@ -20,6 +21,12 @@ textarea {
 .formRow {
   display: flex;
   gap: 24px;
+}
+
+@media only screen and (max-width: 768px) {
+  .formRow {
+    flex-direction: column;
+  }
 }
 
 .rowDivider {
@@ -43,6 +50,15 @@ textarea {
   flex-direction: column;
   gap: 8px;
 }
+
+.recipeInfo ul li {
+  list-style-type: disc;
+}
+
+.recipeInfo ol li {
+  list-style-type: decimal;
+}
+
 .recipeActions {
   display: flex;
   gap: 8px;

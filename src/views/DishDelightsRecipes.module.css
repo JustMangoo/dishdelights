@@ -24,3 +24,10 @@ select {
   box-sizing: border-box;
   border-radius: 50px;
 }
+
+@media only screen and (max-width: 768px) {
+  .filters {
+    gap: 8px;
+    flex-direction: column;
+  }
+}
