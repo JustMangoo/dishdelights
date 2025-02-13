@@ -1,0 +1,16 @@
+.footer {
+  flex: 0 1;
+  background-color: var(--background-color);
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px;
+  margin-top: auto;
+}

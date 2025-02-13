@@ -1,7 +1,13 @@
-import React from "react";
-
 const About = () => {
-  return <div>About</div>;
+  return (
+    <div>
+      <h1>About DishDelights</h1>
+      <p>
+        DishDelights is a vibrant community dedicated to uniting food lovers
+        from around the globe.
+      </p>
+    </div>
+  );
 };
 
 export default About;

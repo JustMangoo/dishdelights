@@ -1,0 +1,23 @@
+.header {
+  padding: 30px 20px;
+  background-color: var(--background-color);
+}
+
+.nav {
+  justify-content: center;
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
