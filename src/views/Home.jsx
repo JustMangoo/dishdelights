@@ -15,10 +15,10 @@ const Home = () => {
       <h1>Welcome to DishDelights</h1>
       <p>Discover and create delicious meals from around the globe.</p>
       <div className={styles.linkGroup}>
-        <Link className="primary-button" to="/recipes">
+        <Link className="primary-button" to="/dishdelights/recipes">
           DishDelights Recipes
         </Link>
-        <Link className="secondary-button" to="/favorites">
+        <Link className="secondary-button" to="/dishdelights/favorites">
           Personal Favorites
         </Link>
       </div>

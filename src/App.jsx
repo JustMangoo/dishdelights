@@ -8,38 +8,43 @@ import Contact from "./views/Contact";
 import NotFound from "./views/NotFound";
 import "./App.css";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "recipes",
+          element: <DishDelightsRecipes />,
+        },
+        {
+          path: "favorites",
+          element: <PersonalFavorites />,
+        },
+        {
+          path: "about",
+          element: <About />,
+        },
+        {
+          path: "contact",
+          element: <Contact />,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "recipes",
-        element: <DishDelightsRecipes />,
-      },
-      {
-        path: "favorites",
-        element: <PersonalFavorites />,
-      },
-      {
-        path: "about",
-        element: <About />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
-    ],
-  },
-]);
+    basename: "/dishdelights/", // Add the base URL here
+  }
+);
 
 function App() {
   return <RouterProvider router={router} />;
