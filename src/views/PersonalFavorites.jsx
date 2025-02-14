@@ -20,8 +20,6 @@ const PersonalFavorites = () => {
     const storedRecipes =
       JSON.parse(localStorage.getItem("favoriteRecipes")) || [];
     console.log("Loaded recipes:", storedRecipes);
-
-    // Only set recipes if the state is empty (to avoid overwriting during double mount)
     if (recipes.length === 0) {
       setRecipes(storedRecipes);
     }

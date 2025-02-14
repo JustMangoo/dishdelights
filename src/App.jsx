@@ -42,7 +42,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/dishdelights/", // Add the base URL here
+    basename: "/dishdelights/",
   }
 );
 
